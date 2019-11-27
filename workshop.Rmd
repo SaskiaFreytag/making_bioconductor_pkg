@@ -314,8 +314,8 @@ not.
     'GPL-3', 'LGPL-2', 'LGPL-2.1', 'LGPL-3', 'AGPL-3', 'Artistic-2.0', 
     'BSD_2_clause', 'BSD_3_clause', 'MIT'. 
 
-Also note that two more field were created Encoding and LazyData. These
-are best deleted as they are not required.
+Also note that two more field were created Encoding and LazyData. The LazyData
+field is best deleted as they are not required.
     
 Here are some other fields that can be in the DESCRIPTION file. We will think 
 about these during the remainder of the workshop, but here is a brief overview:
@@ -379,6 +379,40 @@ the motivation for the change. When you revisit a project after a break or need
 to digest recent changes made by a colleague, looking at the history, by reading 
 commit messages and skimming through diffs, is an extremely efficient way to get 
 up to speed. After writing this short message press 'Commit'. 
+
+#### A little bit more git pain
+
+Now after the first commit, we will want to make sure that our changes
+are propagated to the online repository. For this, we will have to 
+tell R about where on GitHub we would like to remotely store the package. For
+this you will first need to create a new GitHub repository. 
+
+So, go to [https://github.com](https://github.com) and make sure you are logged 
+in.
+
+Click green “New repository” button. Or, if you are on your own profile page, 
+click on “Repositories”, then click the green “New” button. This will take you
+to a new page, which will allow you to create a repository, i.e. the place
+where your package will be remotely stored. Enter 'praiseme' in the 
+repository name and intialize by clicking on the big green button "Create 
+repository". Then copy the URL for your new github repository.
+
+![](figures/github.png){width=500}
+
+Now back to RStudio where you will need to connect the package to the newly 
+created repository. In your RStudio click on the Git pane in the right corner.
+There, click on the “two purple boxes and a white square”. 
+Click “Add remote”. Paste the URL here and pick a remote name, 
+almost certainly origin. Now “Add”.
+
+![](figures/git_pane.png){width=300}
+
+We should be back in the “New Branch” dialog. I assume you’re on the 
+master branch want it to track master on GitHub. Enter master as the branch name 
+and make sure “Sync branch with remote” is checked. Click “Create” 
+(yes, even though the branch already exists). In the next dialog, choose 
+“overwrite”.
+
 
 ### Your first function
 
