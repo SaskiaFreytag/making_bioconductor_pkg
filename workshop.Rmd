@@ -272,8 +272,8 @@ not.
     ‘GPL-3’, ‘LGPL-2’, ‘LGPL-2.1’, ‘LGPL-3’, ‘AGPL-3’, ‘Artistic-2.0’, 
     ‘BSD_2_clause’, ‘BSD_3_clause’, ‘MIT’. 
 
-Also note that two more field were created Encoding and LazyData. These
-are best deleted as they are not required.
+Also note that two more field were created Encoding and LazyData. The LazyData
+field is best deleted as they are not required.
     
 Here are some other fields that can be in the DESCRIPTION file. We will think 
 about these during the remainder of the workshop, but here is a brief overview:
