@@ -32,6 +32,8 @@ three main types:
     analyses.
 * Software: Provide implementation of algorithms, access to resources or 
     visualizations.
+* Workflow: Long-form vignettes that illustrate how to analyse a particular 
+    type of data, such as RNA-seq.
 
 For the purposes of this workshop, we will only consider software packages.
 
@@ -78,12 +80,15 @@ of the workshop.
 
 ### Reuse
 
-There are 1,823 packages on Bioconductor packages currently available. Many
-of these packages have implemented thoughtful data structures and built
-infrastructure around these. It is vital that your package makes use of these
-data structures and infrastructures whenever possible. For example, high-
-throughput genomic data is commonly stored in the `SummarizedExperiment` object
-class. If your package makes use of such data, you should consider 
+There are 1,823 software packages on Bioconductor packages currently available. 
+Many of these packages have implemented thoughtful data structures and built
+infrastructure around these. In particular, the 
+[Bioconductor Core Team](https://bioconductor.org/about/core-team/) have spent 
+considerable resources designing and developing well-tested packages that are 
+central to the Bioconductor project. It is vital that your package makes use of 
+these data structures and infrastructures whenever possible. For example, 
+high-throughput genomic data is commonly stored in the `SummarizedExperiment` 
+object class. If your package makes use of such data, you should consider 
 interoperating with the `SummarizedExperiment` package.
 
 ### Modularity
@@ -133,8 +138,8 @@ Microsoft Word on steroids.
 
 There are multiple ways to handle version control, we will default to Git. Git 
 is a software that facilitates version control. It was designed particularly
-for coordinating work among developers. Git-based projects are hosted on 
-cloud-based services, such as GitHub, Bitbucket and GitLab. You can think of 
+for coordinating work among software developers. Git-based projects are hosted 
+on cloud-based services, such as GitHub, Bitbucket and GitLab. You can think of 
 these as Google Drive, but much more organized. These allow you to store your
 projects, share your work with other people and even allow others to make 
 changes. 
@@ -177,32 +182,34 @@ developing part instead of thinking of high-throughput genomic applications.
 #### Set some layout parameters
 
 However before we intialize our package we want to make some layout 
-configurations to our RStudio session, so your code will be formatted the way 
-that Bioconductor prefers it. Just think of this step as setting the layout 
-parameters on a Word document. 
+configurations to our RStudio session, so your code will be formatted [the way 
+that Bioconductor prefers it](http://bioconductor.org/developers/package-guidelines/#rcode).
+Just think of this step as setting the layout parameters on a Word document. 
 
-* Set the column width marker to 80 columns. You can find this in the ‘Tools’ 
-    menu if you select the ‘Global Options…’ and then look at the ‘Code Editing’ 
-    panel. Then make sure that you click the ‘show margin’ option and that it is
-    set to 80 columns. This will help you see if your lines are too long.
-    
-![](figures/margin.png){width=350}
-    
-* Second set up the tab to be 4 spaces. You can do this right above where you 
-    set the column width marker for 80.
+* Set up the tab to be 4 spaces. You can find this in the 'Tools' 
+    menu if you select the 'Global Options…' and then look at the 'Code' panel 
+    under the 'Editing' tab.
     
 ![](figures/tab_widths.png){width=350}
 
+* Set the column width marker to 80 columns. You can find this in the 'Tools' 
+    menu if you select the 'Global Options…' and then look at the 'Code' panel 
+    under the 'Display' tab. Make sure that you click the 'show margin' option 
+    and that it is set to 80 columns. This will help you see if your lines are 
+    too long.
+    
+![](figures/margin.png){width=350}
+    
 #### Intialize your package
 
-To make your first package with RStudio, go to the ‘File’ menu and choose 
-‘New Project’. From here you probably want to choose ‘New Directory’ and then 
-you definitely want o choose ‘R Package’ to set up a new R package. This will 
+To make your first package with RStudio, go to the 'File' menu and choose 
+'New Project'. From here you probably want to choose 'New Directory' and then 
+you definitely want to choose 'R Package' to set up a new R package. This will 
 take you to the final step to get started which will just ask you what you want 
 to call your new package and where to put it. It is worth taking a moment to 
 choose a name that you think you will like and to put the package in a location 
 where you are comfortable working. These things can be easily changed later but 
-it’s still best to get them correct right now. For the purposes of this 
+it's still best to get them correct right now. For the purposes of this 
 tutorial we will create a package called 'praiseme' and store it in default
 location. Finally, check the box at the bottom that says 
 'Create a git repository'.
@@ -211,16 +218,51 @@ location. Finally, check the box at the bottom that says
 
 If you look at the screen now you will see several files listed in the files 
 tab. These are files that are needed to make a package (and which RStudio 
-conveniently creates for you). A couple of these files are ‘extras’ that are put 
-there by RStudio to help it manage your package building (‘.Rbuildignore’, 
-‘Read-and-delete-me’ and ‘praisme.Rproj’) You can just ignore these files, as  
-they are not part of ‘required’ R package anatomy.
+conveniently creates for you). A couple of these files are 'extras' that are put 
+there by RStudio to help it manage your package building ('.Rbuildignore', 
+'Read-and-delete-me' and 'praisme.Rproj') You can just ignore these files, as  
+they are not part of 'required' R package anatomy.
+
+#### A little bit more git pain
+
+Before we are ready to begin with actual package making, we will have to 
+tell R about where on GitHub we would like to remotely store the package. For
+this you will first need to create a new GitHub repository. 
+
+So, go to [https://github.com](https://github.com) and make sure you are logged 
+in.
+
+Click green "New repository" button. Or, if you are on your own profile page, 
+click on "Repositories", then click the green "New" button. This will take you
+to a new page, which will allow you to create a repository, i.e. the place
+where your package will be remotely stored. Enter 'praiseme' in the 
+repository name and intialize by clicking on the big green button "Create 
+repository".
+
+![](figures/github.png){width=500}
+
+Finally, copy the URL the 'Quick setup' box.
+
+![](figures/quick_setup.png){width=500}
+
+Now back to RStudio where you will need to connect the package to the newly 
+created repository. In your RStudio click on the Git pane in the right corner.
+There, click on the "two purple boxes and a white square". 
+Click "Add remote". Paste the URL here and set the 'Remote Name' to "origin".
+Now, click "Add".
+
+![](figures/git_pane.png){width=300}
+
+We should be back in the "New Branch" dialog. Enter "master" as the branch name 
+and make sure "Sync branch with remote" is checked. Click "Create" 
+(yes, even though the branch already exists). In the next dialog, choose 
+"overwrite".
 
 #### Describe your package
 
 Now we are ready to start entering some information into your package. We will
 start with the DESCRIPTION file. This is file has a LOT of roles in an R 
-package. And technically it is a ‘.dcf’ file. It does its job by detailing a 
+package. And technically it is a '.dcf' file. It does its job by detailing a 
 series of fields to tell R about what is in a package and how to use that 
 information. The one that was auto generated for you should already look like 
 this:
@@ -247,30 +289,30 @@ our example, and then I will talk a bit about adding some of the fields that are
 not.
 
 * Package - This string is just the official package name.
-* Type - This will basically always be ‘Package’. If you are wondering why this 
+* Type - This will basically always be 'Package'. If you are wondering why this 
     field even exists the short answer is: history. The long answer is already 
     explained in the Writing R extensions manual
 * Title - This is a slightly longer and more descriptive name for your package.
 * Version - This is not filled in correctly for a Bioconductor package in the 
     default example above. Bioconductor packages need a three part version 
-    number X.Y.Z. The ‘X’ value is the major version number (normally 0 until 
-    there has been a release) The ‘Y’ value is normally bumped automatically for 
+    number X.Y.Z. The 'X' value is the major version number (normally 0 until 
+    there has been a release) The 'Y' value is normally bumped automatically for 
     you with each release such that the development branch is an odd number 
     while the release is an even number, so these usually skip a number each 
-    release. And the ‘Z’ number is the minor release number which can be 
-    anything as long as it’s bigger than the last number you used…
+    release. And the 'Z' number is the minor release number which can be 
+    anything as long as it's bigger than the last number you used…
 * Author - List of people (preferably with email addresses who wrote the 
     original package)
 * Maintainer - Who should people contact if they have a problem with 
     this package? You must have someones name and email address here.
     You must make sure this is up to date and accurate.
 * Description - This is where you can write a nice verbose description of 
-    what your package is about.
+    what your package is about. Think of it like the abstract for a paper.
 * License - Here you need to fill in the official license. Normally you will 
-    want to just use one of the ‘official’ licenses. Which basically means 
-    choosing from one of the following strings for this field: ‘GPL-2’, 
-    ‘GPL-3’, ‘LGPL-2’, ‘LGPL-2.1’, ‘LGPL-3’, ‘AGPL-3’, ‘Artistic-2.0’, 
-    ‘BSD_2_clause’, ‘BSD_3_clause’, ‘MIT’. 
+    want to just use one of the 'official' licenses. Which basically means 
+    choosing from one of the following strings for this field: 'GPL-2', 
+    'GPL-3', 'LGPL-2', 'LGPL-2.1', 'LGPL-3', 'AGPL-3', 'Artistic-2.0', 
+    'BSD_2_clause', 'BSD_3_clause', 'MIT'. 
 
 Also note that two more field were created Encoding and LazyData. The LazyData
 field is best deleted as they are not required.
@@ -292,16 +334,17 @@ about these during the remainder of the workshop, but here is a brief overview:
 * Suggests - This is for dependencies that are not needed in order to load and 
     use your package. If you have a function somewhere that is rarely used and 
     that needs some specific package resource then Suggests is a good option. 
-    Suggests is normally used along with require() to ensure that the package 
+    Suggests is normally used along with `require()` to ensure that the package 
     in question is loaded when and where it is needed.
 * BiocViews - These are unique to Bioconductor and they describe each package 
     using a controlled vocabulary. You can see an example of how they are used 
-    and also browse existing ones by clicking here. While you are browsing, 
-    be sure to check the box that says ‘Developers: check this box to toggle 
-    the visibility of childless biocViews.’ That way you will be able to see 
-    the full ontology. You can also make use of the `recommendBiocViews(pkgdir)` 
-    function from the `biocViews` package to suggest potential views for your 
-    package.
+    and also browse existing ones by clicking 
+    [here](https://www.bioconductor.org/packages/devel/BiocViews.html). While 
+    you are browsing, be sure to check the box that says 'Developers: check 
+    this box to toggle the visibility of childless biocViews.' That way you 
+    will be able to see the full ontology. You can also make use of the 
+    `recommendBiocViews(pkgdir)` function from the `biocViews` package to 
+    suggest potential views for your package.
     
 Now that we have discussed the DESCRIPTION file lets fill ours out so that it 
 can actually work for our test package:
@@ -449,7 +492,7 @@ a short message regarding the changes you have made.
 
 ### Add documentation
 
-Documentation is one of the most important aspects of a good package. Without it, users won’t know how to use your package. Documentation is also useful for future-you (so you remember what your functions were supposed to do), and for developers extending your package. Documentation in an R package can be accessed by `?` or `help()`. It lives
+Documentation is one of the most important aspects of a good package. Without it, users won't know how to use your package. Documentation is also useful for future-you (so you remember what your functions were supposed to do), and for developers extending your package. Documentation in an R package can be accessed by `?` or `help()`. It lives
 in the folder `\man`, where you can find .Rd files, whcih contain documentation.
 These can be created by hand, but that is generally not advisable. Here
 we will learn how to create this type of documentation using `roxygen2`. This is a 
@@ -482,10 +525,10 @@ You will notice that there are new lines that start with `#'`. These are the
 roxygen comments and they are broken up in into blocks, which are mostly tagged 
 using `@`. This is not true for the first couple of lines though:
 
-* The first sentence becomes the title of the documentation. T
-    that’s what you see when you look at help(package = mypackage) and is shown 
-    at the top of each help file. It should fit on one line, be written in 
-    sentence case, but not end in a full stop.
+* The first sentence becomes the title of the documentation. That's what you 
+    see when you look at help(package = mypackage) and is shown at the top of 
+    each help file. It should fit on one line, be written in sentence case, but 
+    not end in a full stop.
 * The second paragraph is the description: this comes first in the documentation 
     and should briefly describe what the function does.
 * The third and subsequent paragraphs go into the details: this is a 
@@ -494,21 +537,21 @@ using `@`. This is not true for the first couple of lines though:
 
 All objects must have a title and description. Details are optional. As well as 
 these introduction blocks, most functions have three tags: 
-@param, @examples and @return. These are automatically generated by the 
+`@param`, `@examples` and `@return`. These are automatically generated by the 
 skeleton. They refer to the following:
 
-* @param name description describes the function’s inputs or parameters. The 
+* `@param` name description describes the function's inputs or parameters. The 
     description should provide a succinct summary of the type of the 
     parameter (e.g., string, numeric vector) and, if not obvious from the 
     name, what the parameter does. The description should start with a capital 
     letter and end with a full stop. It can span multiple lines (or even 
     paragraphs) if necessary. All parameters must be documented.
-* @examples provides executable R code showing how to use the function in 
+* `@examples` provides executable R code showing how to use the function in 
     practice. This is a very important part of the documentation because many 
     people look at the examples first. Example code must work without errors.
-* @return description describes the output from the function. This is not always
-    necessary, but is a good idea if your function returns different types of 
-    output depending on the input, or if you’re returning an S3, S4 or RC 
+* `@return` description describes the output from the function. This is not
+    always necessary, but is a good idea if your function returns different 
+    types of output depending on the input, or if you're returning an S3 or S4 
     object.
     
 Now let's fill out the documentation for you `praiseme` function. Again try
@@ -571,7 +614,7 @@ Again commit these changes.
 The NAMESPACE file is used to control which objects are exported by a package 
 (to end users) as well as which ones are available to it 
 (as imported from other packages). Unlike the DESCRIPTION file the NAMESPACE 
-file is not a ‘.dcf’ file. It is actually meant to contain R code. The good
+file is not a '.dcf' file. It is actually meant to contain R code. The good
 news is that the NAMESPACE package is created automatically for you when you
 are using `roxygen2` to document your code. Since it is an advanced topic, 
 we will not cover it here beyond teaching you how to automatically generate it
@@ -583,6 +626,7 @@ with `roxygen2`. If you are interested, follow this
 We are now finished with the package. In actuality, this would probably mark
 the beginning of your package writing and you would simply add more functions,
 by using the same strategy:
+
 * Write function
 * Document function
 * Create documentation and NAMESPACE
@@ -619,8 +663,8 @@ project. You can also test your own package for BiocCheck compliance like this:
 
 ```{r eval=FALSE, class.source = 'fold-show'}
 library(BiocCheck)
-pathToPkg <- file.path("..","MyPkg")
-BiocCheck(pathToPkg)
+# This assume your working directory is the package directory.
+BiocCheck(".")
 ``` 
 
 If you have followed the instructions up to this point, then calling the 
@@ -640,8 +684,8 @@ Finally another good idea is to run the following code on your package:
 
 ```{r eval=FALSE, class.source = 'fold-show'}
 library(goodpractice)
-pkg_path <- file.path("..","MyPkg")
-g <- gp(pkg_path)
+# This assume your working directory is the package directory.
+g <- gp(".")
 g
 ```
 
@@ -659,7 +703,7 @@ these and then refer you to links to learn more about these.
 #### Vignettes
 
 A vignette is a long-form guide to your package. Function documentation is great
-if you know the name of the function you need, but it’s useless otherwise. A 
+if you know the name of the function you need, but it's useless otherwise. A 
 vignette is like a book chapter or an academic paper: it can describe the problem
 that your package is designed to solve, and then show the reader how to solve it. 
 A vignette should divide functions into useful categories, and demonstrate how 
@@ -679,7 +723,7 @@ this [link](https://r-pkgs.org/tests.html).
 
 The `NEWS.md` is aimed at existing users: it should list all the API changes in 
 each release. There are a number of formats you can use for package news, but 
-I recommend `NEWS.md`. It’s well supported by GitHub, permitted by CRAN, and is 
+I recommend `NEWS.md`. It's well supported by GitHub, permitted by CRAN, and is 
 easy to re-purpose for other formats. For more on the NEWS file, go to this 
 [link](http://r-pkgs.had.co.nz/release.html).
 
@@ -712,7 +756,7 @@ knitr::opts_chunk$set(
 ```
 
 Now create your own small README file that explains the purpose of your 
-package and add an example. Remember to modify the `README.Rmd`. You’ll then 
+package and add an example. Remember to modify the `README.Rmd`. You'll then 
 need to re-knit `README.Rmd`. For this simply click on the 'Knit' button at the
 top of the editor.
 
@@ -741,7 +785,7 @@ The Bioconductor submission process works through GitHub. So by developing our
 package with version control, we have already passed the first hurdle. When
 your package passes the [basic requirements and tests](https://bioconductor.org/developers/package-submission/), you are ready to
 submit. Submission is actually pretty easy. Submit by opening a new issue in the [Bioconductor Contributions repository](https://github.com/Bioconductor/Contributions), 
-following the guidelines of the README.md file. 
+following the guidelines of the `README.md` file. 
 
 ### After submission
 
@@ -765,13 +809,13 @@ If your package is accepted, it will be added to Bioconductor's Git source contr
 
 There are two releases each year, around April and October. 
 The release schedule will indicate the timetables and deadlines for each release. 
-A release cycle typically produces two versions of packages, ‘devel’ and ‘release’.
+A release cycle typically produces two versions of packages, 'devel' and 'release'.
 It is important to be familiar with these branch concepts. Once your package has
-been accepted, it will initially be in the ‘devel’ branch. The current devel 
+been accepted, it will initially be in the 'devel' branch. The current devel 
 branch becomes the next release. Most users are expected to use the release 
 branch, so they will not immediately have access to your package until the 
 next release. Bug fixes can be fixed in both branches, while new features should 
-only be added to the ‘devel’ branch. You can check the release cycle 
+only be added to the 'devel' branch. You can check the release cycle 
 [here](https://bioconductor.org/developers/release-schedule/).
 
 ### What we wish we would have known? 
