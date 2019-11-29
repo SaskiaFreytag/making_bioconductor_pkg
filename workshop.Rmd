@@ -22,7 +22,7 @@ are mentioned in the text.*
 
 ## What, why, who, when and how
 
-### What is a Bioconductor package?
+### What is a Bioconductor package `r emo::ji("package")`?
 
 A Bioconductor package is an R package `r emo::ji("package")` that provides tools
 `r emo::ji("hammer")` for the analysis and 
@@ -733,7 +733,8 @@ These are automated tests that are a bit like the tests you perform when
 you install the package `r emo::ji("package")` for the first time. However, instead of you doing
 these the computer takes care of them. This requires you to tell the computer
 how to perform these tests. This is what you do when writing unit tests, which
-live in the folder `\tests`. If you wish to know more, follow
+live in the folder `\tests`. You will need the R package `r emo::ji("package")`
+`testthat` for this purpose. If you wish to know more, follow
 this [link](https://r-pkgs.org/tests.html). 
 
 #### NEWS `r emo::ji("newspaper")`
@@ -930,6 +931,7 @@ R packages here are our favourites:
 Specifically to creating Bioconductor packages, we suggest the following 
 links:
 
+* [R package workshop](https://combine-australia.github.io/r-pkg-dev/)
 * [Building packages for Bioconductor](https://bioconductor.org/developers/how-to/buildingPackagesForBioc/)
 * [Package Guidelines](https://bioconductor.org/developers/package-guidelines/)
 * [Package Submission](http://bioconductor.org/developers/package-submission/)
