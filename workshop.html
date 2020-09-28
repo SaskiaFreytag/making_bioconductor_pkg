@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -1295,13 +1294,13 @@ window.initializeCodeFolding = function(show) {
   var currentIndex = 1;
 
   // select all R code blocks
-  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia');
+  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia, pre.foldable');
   rCodeBlocks.each(function() {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show || $(this)[0].classList.contains('fold-show'))
-      div.addClass('in');
+    show = (show || $(this).hasClass('fold-show')) && !$(this).hasClass('fold-hide');
+    if (show) div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
     $(this).before(div);
@@ -1477,6 +1476,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -1624,7 +1624,7 @@ div.tocify {
 </div>
 <div id="when-should-i-make-a-bioconductor-packages" class="section level3">
 <h3>When should I make a Bioconductor packages 📦?</h3>
-<p>You are probably ready to make a Bioconductor package 📦 when you have a set of cohesive functions that address one or multiple problems in the analyses or comprehension of high-throughput genomic data. It is important that your package 📦 does not merely present an alternative to existing solutions, but constitutes an advance. However, do not be discouraged if your idea is already implemented. In such cases consider approaching the author of the package that has implemented your work and offer to collaborate 👨‍💻 and help maintain their package.</p>
+<p>You are probably ready to make a Bioconductor package 📦 when you have a set of cohesive functions that address one or multiple problems in the analyses or comprehension of high-throughput genomic data. It is important that your package 📦 does not merely present an alternative to existing solutions, but constitutes an advance. However, do not be discouraged if your idea is already implemented. In such cases consider approaching the author of the package that has implemented your work and offer to collaborate 👩‍💻 and help maintain their package.</p>
 </div>
 <div id="how-do-i-make-a-bioconductor-package" class="section level3">
 <h3>How do I make a Bioconductor package 📦?</h3>
@@ -1694,7 +1694,7 @@ library(BiocCheck)</code></pre>
 <p>To connect RStudio to your git, we will be using the <code>usethis</code> package:</p>
 <pre class="r fold-show"><code>use_git_config(user.name = &quot;Jane Doe&quot;, user.email = &quot;jane@example.org&quot;)</code></pre>
 <p>Simply replace “Jane Doe” with your GitHub username and enter your email instead of “jane@example.org”. Make sure to use the one that was used when you signed up to GitHub.</p>
-<p>If you are feeling a bit overwhelmed with the whole version control 🐱 concept, don’t worry. There is Jenny Bryan and Jim Hester’s excellent book “Happy Git with R” which is available for free <a href="happygitwithr.com">online</a>.</p>
+<p>If you are feeling a bit overwhelmed with the whole version control 🐱 concept, don’t worry. There is Jenny Bryan and Jim Hester’s excellent book “Happy Git with R” which is available for free <a href="https://happygitwithr.com/">online</a>.</p>
 </div>
 </div>
 <div id="lets-get-started" class="section level3">
@@ -1944,6 +1944,10 @@ g</code></pre>
 <h4>NEWS 📰</h4>
 <p>The <code>NEWS.md</code> is aimed at existing users: it should list all the API changes in each release. There are a number of formats you can use for package news, but I recommend <code>NEWS.md</code>. It’s well supported by GitHub, permitted by CRAN, and is easy to re-purpose for other formats. For more on the NEWS file, go to this <a href="http://r-pkgs.had.co.nz/release.html">link</a>.</p>
 </div>
+<div id="github-actions" class="section level4">
+<h4>Github actions 🐱</h4>
+<p>Github actions automatically allow you to check your package every time you commit a change. This will allow you to catch errors quickly. However, they can be tricky to set up. Good that there is a package that will do the hard work for you, simply add Github actions with the help of the <code>biocthis</code> 📦. Check out its function <code>use_bioc_github_action()</code> for more information.</p>
+</div>
 </div>
 <div id="end-by-disseminating" class="section level3">
 <h3>End by disseminating</h3>
@@ -2072,6 +2076,7 @@ praise(&quot;Saskia&quot;)
 <li><a href="https://bioconductor.org/help/course-materials/2017/BioC2017/DDay/Workshop/MakeAPackage.html">Make a Package</a></li>
 <li><a href="https://support.rstudio.com/hc/en-us/articles/360016400354-Using-BioConductor-with-RStudio-Package-Manager">Using Bioconductor with RStudio Package Manager</a></li>
 </ul>
+<p>Also check out the amazing <a href="https://github.com/lcolladotor/biocthis/"><code>biocthis</code></a> package which will guide you through the development of a package when this tutorial fails.</p>
 </div>
 <div id="friendly-bear" class="section level4">
 <h4>Friendly bear 🐻</h4>
@@ -2135,7 +2140,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

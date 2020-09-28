@@ -204,7 +204,7 @@ when you signed up to GitHub.
 
 If you are feeling a bit overwhelmed with the whole version control `r emo::ji("cat")` concept, 
 don't worry. There is Jenny Bryan and Jim Hester's excellent book "Happy Git
-with R" which is available for free [online](happygitwithr.com).
+with R" which is available for free [online](https://happygitwithr.com/).
 
 ### Let's get started 
 
@@ -745,6 +745,10 @@ I recommend `NEWS.md`. It's well supported by GitHub, permitted by CRAN, and is
 easy to re-purpose for other formats. For more on the NEWS file, go to this 
 [link](http://r-pkgs.had.co.nz/release.html).
 
+#### Github actions `r emo::ji("cat")`
+
+Github actions automatically allow you to check your package every time you commit a change. This will allow you to catch errors quickly. However, they can be tricky to set up. Good that there is a package that will do the hard work for you, simply add Github actions  with the help of the `biocthis` `r emo::ji("package")`. Check out its function `use_bioc_github_action()` for more information.
+
 ### End by disseminating
 
 Alright now you are almost ready to disseminate your first package `r emo::ji("package")`. 
@@ -937,6 +941,8 @@ links:
 * [Package Submission](http://bioconductor.org/developers/package-submission/)
 * [Make a Package](https://bioconductor.org/help/course-materials/2017/BioC2017/DDay/Workshop/MakeAPackage.html)
 * [Using Bioconductor with RStudio Package Manager](https://support.rstudio.com/hc/en-us/articles/360016400354-Using-BioConductor-with-RStudio-Package-Manager)
+
+Also check out the amazing [`biocthis`](https://github.com/lcolladotor/biocthis/) package which will guide you through the development of a package when this tutorial fails.
 
 #### Friendly bear `r emo::ji("bear")`
 
