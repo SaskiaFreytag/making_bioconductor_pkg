@@ -1,0 +1,16 @@
+url: https://SaskiaFreytag.github.io/making_bioconductor_pkg
+
+template:
+  params:
+    bootswatch: flatly
+    #ganalytics: UA-93043521-1
+
+home:
+  title: " An introduction to building a Bioconductor package"
+  type: inverse
+
+
+navbar:
+  right:
+   - icon: fa-github
+     href: https://github.com/SaskiaFreytag/making_bioconductor_pkg

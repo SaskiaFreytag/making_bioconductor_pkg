@@ -1,0 +1,35 @@
+Package: BuildingBioCPackage
+Title: Building a Bioconductor Package
+Version: 0.1.0
+Authors@R: 
+    c(person(given = "Saskia",
+             family = "Freytag",
+             role = c("aut", "cre"),
+             email = "saskia.freytag@perkins.uwa.edu.au"),
+     person(given = "Peter",
+            family = "Hickey",
+            role = c("aut"),
+            email = "peter.hickey@gmail.com"))
+Description: An introduction to building a Bioconductor package.
+License: Artistic-2.0
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports:
+    emo,
+    BiocCheck,
+    devtools,
+    goodpractice,
+    roxygen2,
+    usethis
+Suggests: 
+    knitr,
+    rmarkdown,
+    pkgdown
+Remotes:
+    hadley/emo
+URL: https://SaskiaFreytag.github.io/making_bioconductor_pkg/
+BugReports: https://github.com/SaskiaFreytag/making_bioconductor_pkg/issues/new/choose
+VignetteBuilder: knitr
+DockerImage: saskiafreytag/making_bioconductor_pkg:latest
