@@ -396,7 +396,7 @@ like to remotely store the package. To this end, you will first need to create
 a new GitHub repository. 
 
 So, go to [https://github.com](https://github.com) and make sure you are logged 
-in.devtools::use_readme_rmd()
+in.
 
 Click green "New repository" button. Or, if you are on your own profile page, 
 click on "Repositories", then click the green "New" button. This will take you

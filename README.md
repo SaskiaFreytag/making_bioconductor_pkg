@@ -6,7 +6,7 @@
 ## Key resources
 
   - Docker image: [Docker
-    Hub](https://hub.docker.com/repository/docker/saskiafreytag/)
+    Hub](https://hub.docker.com/repository/docker/saskiafreytag/making_bioconductor_pkg)
   - Workshop material: [pkgdown
     website](https://saskiafreytag.github.io/making_bioconductor_pkg)
 
@@ -57,20 +57,16 @@ following:
 
 ``` r
 library(BiocManager)
-install(c())
+install(c("usethis", "roxygen2", "devtools", "goodpractice", "BiocCheck"))
 ```
 
-Alternatively, you can might like to use Docker to runt he workshop in a
+Alternatively, you can might like to use Docker to run the workshop in a
 container with R, all the necessary packages, and RStudio. This can be
 done as follows:
 
-  - Run `docker run -e PASSWORD=delayedarray -p 8787:8787 -d --rm
-    saskiafreytag/saskiafreytag/making_bioconductor_pkg`. Use `-v
-    $(pwd):/home/rstudio` argument to map your local directory to the
-    container.
   - Log in to RStudio at <http://localhost:8787> using username
-    `rstudio` and password `yourpassword`. Note that on Windows you need
-    to provide your localhost IP address like
+    `rstudio` and password `welcome-to-bioc2020`. Note that on Windows
+    you need to provide your localhost IP address like
     `http://191.163.92.108:8787/` - find it using `docker-machine ip
     default` in Docker’s terminal.
   - Run `browseVignettes(package = "Building a Bioconductor Package")`.
