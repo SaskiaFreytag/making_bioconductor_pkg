@@ -1,13 +1,20 @@
 ---
 title: 'Workshop: Building a Bioconductor Package'
 author: "Saskia Freytag & Peter Hickey"
-date: "20/11/2019"
+date: "Last modified: November 20, 2019; Compiled: `r format(Sys.time(), '%B %d, %Y')`"
 output: 
   html_document:
     toc: true
     toc_float: true
     theme: simplex
     code_folding: hide
+vignette: >
+  %\VignetteIndexEntry{Building a Bioconductor Package}
+  %\VignetteEncoding[ut8]{inputenc}
+  %\VignetteEngine{knitr::rmarkdown}
+resource_files:
+  - figures/*.png
+  - figures/*.jpg
 ---
 
 ```{r setup, include=FALSE}
@@ -223,7 +230,7 @@ Just think of this step as setting the layout parameters on a Word document.
 * Set up the tab to be 4 spaces. You can find this in the 'Tools' 
     menu if you select the 'Global Options…' and then look at the 'Code' panel 
     under the 'Editing' tab.
-    
+
 ![](figures/tab_widths.png){width=350}
 
 * Set the column width marker to 80 columns. You can find this in the 'Tools' 
@@ -398,7 +405,7 @@ where your package `r emo::ji("package")` will be remotely stored. Enter 'praise
 repository name and initialize by clicking on the big green button "Create 
 repository". 
 
-![](figures/github.png){width=500}
+![](figures/gh.png){width=500}
 
 Finally, copy the URL the 'Quick setup' box.
 
@@ -761,7 +768,7 @@ the `README.md` file, which will be displayed on your GitHub page. The easiest
 way to get started is to use `devtools::use_readme_rmd()`. This creates a template 
 `README.Rmd` and adds it to .Rbuildignore. The template looks like:
 
-```
+````
 ---
 output: github_document
 ---
@@ -775,7 +782,7 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 ```
-```
+````
 
 Now create your own small README file that explains the purpose of your 
 package `r emo::ji("package")` and adds an example. Remember to modify the `README.Rmd`. You'll then 
@@ -840,7 +847,7 @@ other people. For this navigate to the 'Git' pane in the right hand corner.
 There click on the 'push' button. Afterwards go to GitHub and find your
 praiseme repository. You should see something like this:
 
-![](figures/GitHub_final.png){width=300}
+![](figures/gh_final.png){width=300}
 
 Note that other people can now simply install your package `r emo::ji("package")` by using
 `devtools::install_github("your_name/praiseme")`. If you want to try this out
