@@ -1,53 +1,82 @@
-# BuildABiocWorkshop2020
 
-This package is a template for building a Bioconductor 2020 workshop. The package
-includes Github actions to:
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-1. Set up bioconductor/bioconductor_docker:devel on Github resources
-2. Install package dependencies for your package (based on the `DESCRIPTION` file)
-3. Run `rcmdcheck::rcmdcheck`
-4. Build a pkgdown website and push it to github pages
-5. Build a docker image with the installed package and dependencies
+# Building a Bioconductor package using RStudio
 
-## Responsibilities
+## Key resources
 
-This year, package authors will be primarily responsible for:
+  - Docker image: [Docker
+    Hub](https://hub.docker.com/repository/docker/saskiafreytag/)
+  - Workshop material: [pkgdown
+    website](https://saskiafreytag.github.io/making_bioconductor_pkg)
 
-1. Creating a landing site of their choosing for their workshops (a website). This website should be listed in the `DESCRIPTION` file as the `URL`.
-2. Creating a docker account and image that will contain workshop materials and the installed packages necessary to run those materials. The name of the resulting docker image, including "tag" if desired, should be listed in a non-standard tag, `DockerImage:` in the `DESCRIPTION` file. 
+## Workshop description
 
-Both of those tasks can be accomplished using the Github actions included in this template package. The vignette accompanying this package describes how to accomplish both of these tasks.
+This workshop gives an introductory overview of how to build a
+Bioconductor package.
 
-## Details
+Workshop participants will learn what makes a Bioconductor package
+special, how to get started building one and how to disseminate your
+final product. This workshop will feature introductory material, ‘live’
+coding, and Q\&A, all of which are adapted from the content below.
 
-For detailed instructions, see the `How to build a workshop` article/vignette.
+### Instructor
 
-## Results of successful deployment
+  - [Saskia Freytag](https://twitter.com/trashystats)
+    (<saskia.freytag@perkins.uwa.edu.au>)
+  - [Peter Hickey](https://peterhickey.org/) (<hickey@wehi.edu.au>)
 
-- A working docker image that contains the installed package and dependencies.
-- An up-to-date `pkgdown` website at https://YOURUSERNAME.github.io/YOURREPOSITORYNAME/
-- Docker image will be tagged with `latest`, `sha-XXXXXX` where `XXXXXX` is the hash of the current `master` commit, and `master`. 
+### Pre-requisites
 
-## To use the resulting image:
+  - Basic knowledge of R syntax.
+  - Github account\!\!\!
 
-```sh
-docker run -e PASSWORD=<choose_a_password_for_rstudio> -p 8787:8787 YOURDOCKERIMAGENAME
+### Workshop Participation
+
+Students will build a small package which is ideally version controlled.
+There will be a Q\&A session in the second half of the workshop.
+
+### Workshop goals and objectives
+
+#### Learning goals
+
+  - Understand the purpose of a package
+  - Learn about the essential building blocks of a package
+  - Develop your first simple package
+  - Become familiar with version control
+
+## Installation
+
+This workshop uses Bioconductor version 3.12. At the time of writing,
+this is the current ‘devel’ version of Bioconductor, which can be
+installed following [these
+instructions](https://www.bioconductor.org/developers/how-to/useDevel/).
+
+You can then install the packages necessary for this workshop using the
+following:
+
+``` r
+library(BiocManager)
+install(c())
 ```
-Once running, navigate to https://localhost:8787/ and then login with `rstudio`:`yourchosenpassword`. 
 
-To try with **this** repository docker image:
+Alternatively, you can might like to use Docker to runt he workshop in a
+container with R, all the necessary packages, and RStudio. This can be
+done as follows:
 
-```sh
-docker run -e PASSWORD=abc -p 8787:8787 seandavi/buildabiocworkshop2020
-```
-
-*NOTE*: Running docker that uses the password in plain text like above exposes the password to others 
-in a multi-user system (like a shared workstation or compute node). In practice, consider using an environment 
-variable instead of plain text to pass along passwords and other secrets in docker command lines. 
-
-
-## Whatcha get
-
-https://seandavi.github.io/BuildABiocWorkshop2020
-
-![dockerhub](https://github.com/seandavi/BuildABiocWorkshop2020/raw/master/inst/images/dockerhub_result.png)
+  - Run `docker run -e PASSWORD=delayedarray -p 8787:8787 -d --rm
+    saskiafreytag/saskiafreytag/making_bioconductor_pkg`. Use `-v
+    $(pwd):/home/rstudio` argument to map your local directory to the
+    container.
+  - Log in to RStudio at <http://localhost:8787> using username
+    `rstudio` and password `yourpassword`. Note that on Windows you need
+    to provide your localhost IP address like
+    `http://191.163.92.108:8787/` - find it using `docker-machine ip
+    default` in Docker’s terminal.
+  - Run `browseVignettes(package = "Building a Bioconductor Package")`.
+    Click on one of the links, “HTML”, “source”, “R code”.
+      - In case of `The requested page was not found` error, add `help/`
+        to the URL right after the hostname, e.g.,
+        <http://localhost:8787/help/library/making_bioconductor_pkg/doc/Building_a_Bioconductor_Packages.html>.
+        This is a [known
+        bug](https://github.com/rocker-org/rocker-versioned/issues/178).

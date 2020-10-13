@@ -93,7 +93,7 @@ of the workshop.
 
 ### Reuse
 
-There are 1,823 software packages on Bioconductor packages `r emo::ji("package")` currently available. 
+There are 1,903 software packages on Bioconductor packages `r emo::ji("package")` currently available. 
 Many of these packages `r emo::ji("package")` have implemented thoughtful data structures and built
 infrastructure around these. In particular, the 
 [Bioconductor Core Team](https://bioconductor.org/about/core-team/) have spent 
@@ -396,7 +396,7 @@ like to remotely store the package. To this end, you will first need to create
 a new GitHub repository. 
 
 So, go to [https://github.com](https://github.com) and make sure you are logged 
-in.
+in.devtools::use_readme_rmd()
 
 Click green "New repository" button. Or, if you are on your own profile page, 
 click on "Repositories", then click the green "New" button. This will take you
@@ -765,7 +765,7 @@ Alright now you are almost ready to disseminate your first package `r emo::ji("p
 Before sharing your package `r emo::ji("package")` with the world you want to create a document that
 tells new users what the can expect from your package `r emo::ji("package")`. This is the purpose of
 the `README.md` file, which will be displayed on your GitHub page. The easiest 
-way to get started is to use `devtools::use_readme_rmd()`. This creates a template 
+way to get started is to use `usethis::use_readme_rmd()`. This creates a template 
 `README.Rmd` and adds it to .Rbuildignore. The template looks like:
 
 ````
