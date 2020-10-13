@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   workshop: workshop.html
-last_built: 2020-10-13T08:34Z
+last_built: 2020-10-13T16:26Z
 urls:
   reference: https://SaskiaFreytag.github.io/making_bioconductor_pkg/reference
   article: https://SaskiaFreytag.github.io/making_bioconductor_pkg/articles
